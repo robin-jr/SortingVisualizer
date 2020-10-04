@@ -90,6 +90,35 @@ async function bubbleSort(arr) {
 		}
 	}
 }
+async function heapSort(arr) {
+	let n = arr.length;
+	for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {
+		await heapify(arr, n, i);
+	}
+	for (let i = n - 1; i > 0; i--) {
+		await delay(ts);
+		swap(arr, 0, i);
+		await heapify(arr, i, 0);
+	}
+}
+
+async function heapify(arr, n, i) {
+	let l = 2 * i + 1,
+		r = 2 * i + 2,
+		max = i;
+
+	if (l < n && arr[l] > arr[i]) {
+		max = l;
+	}
+	if (r < n && arr[r] > arr[max]) {
+		max = r;
+	}
+	if (max != i) {
+		await delay(ts);
+		swap(arr, i, max);
+		await heapify(arr, n, max);
+	}
+}
 
 function delay(ms) {
 	return new Promise((resolve) => setTimeout(resolve, ms));

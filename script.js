@@ -22,7 +22,7 @@ async function startSorting() {
 			await quickSort(values, 0, values.length - 1);
 			break;
 		case "HeapSort":
-			heapSort();
+			heapSort(values);
 			break;
 		case "MergeSort":
 			await mergeSort(values);
